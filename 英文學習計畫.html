@@ -113,7 +113,57 @@
   .word-main { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   .word-en { color: #e2e8f0; font-weight: 600; font-size: 1rem; }
   .word-zh { color: #94a3b8; font-size: 0.85rem; }
-  .word-ex { color: #64748b; font-size: 0.78rem; font-style: italic; margin-top: 2px; }
+  .word-ex {
+    color: #64748b;
+    font-size: 0.78rem;
+    font-style: italic;
+    margin-top: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .word-ex::before {
+    content: "\25B6";
+    font-size: 0.5rem;
+    color: #4338ca;
+    font-style: normal;
+    flex-shrink: 0;
+  }
+  .word-ex:active { color: #a5b4fc; }
+
+  /* Grammar check */
+  .check-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 10px;
+    border: 1px solid #4338ca;
+    background: #312e81;
+    color: #c7d2fe;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .check-btn:active { background: #4338ca; }
+  .check-result {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    font-size: 0.83rem;
+    line-height: 1.7;
+    display: none;
+  }
+  .check-result.show { display: block; }
+  .err { color: #f87171; text-decoration: line-through; }
+  .fix { color: #34d399; font-weight: 600; }
+  .check-tip { color: #94a3b8; font-size: 0.78rem; margin-top: 6px; }
   .play-btn {
     width: 32px;
     height: 32px;
@@ -473,6 +523,8 @@
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">W</span> 造句練習</div>
         <p style="font-size:0.85rem; color:#94a3b8;">用今天的單字寫一段自我介紹（5 句）</p>
         <textarea class="writing-area" id="writing-1-1" placeholder="Hello, my name is ... I am from ..." oninput="saveWriting('writing-1-1')"></textarea>
+        <button class="check-btn" onclick="checkGrammar('writing-1-1')">&#128270; 檢查文法</button>
+        <div class="check-result" id="result-writing-1-1"></div>
       </div>
 
       <div class="card">
@@ -519,6 +571,8 @@
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">W</span> 造句練習</div>
         <p style="font-size:0.85rem; color:#94a3b8;">介紹你的家人（5 句話）</p>
         <textarea class="writing-area" id="writing-1-2" placeholder="I have a ... My mother is ..." oninput="saveWriting('writing-1-2')"></textarea>
+        <button class="check-btn" onclick="checkGrammar('writing-1-2')">&#128270; 檢查文法</button>
+        <div class="check-result" id="result-writing-1-2"></div>
       </div>
       <div class="card">
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#10003;</span> 今日任務</div>
@@ -564,6 +618,8 @@
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">W</span> 造句練習</div>
         <p style="font-size:0.85rem; color:#94a3b8;">描述你今天吃了什麼（5 句話）</p>
         <textarea class="writing-area" id="writing-1-3" placeholder="I eat ... for breakfast. I like ..." oninput="saveWriting('writing-1-3')"></textarea>
+        <button class="check-btn" onclick="checkGrammar('writing-1-3')">&#128270; 檢查文法</button>
+        <div class="check-result" id="result-writing-1-3"></div>
       </div>
       <div class="card">
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#10003;</span> 今日任務</div>
@@ -609,6 +665,8 @@
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">W</span> 造句練習</div>
         <p style="font-size:0.85rem; color:#94a3b8;">描述你一天的日常（5 句話）</p>
         <textarea class="writing-area" id="writing-1-4" placeholder="I always wake up at ... In the morning, I ..." oninput="saveWriting('writing-1-4')"></textarea>
+        <button class="check-btn" onclick="checkGrammar('writing-1-4')">&#128270; 檢查文法</button>
+        <div class="check-result" id="result-writing-1-4"></div>
       </div>
       <div class="card">
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#10003;</span> 今日任務</div>
@@ -654,6 +712,8 @@
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">W</span> 造句練習</div>
         <p style="font-size:0.85rem; color:#94a3b8;">描述你怎麼去上班/上學（5 句話）</p>
         <textarea class="writing-area" id="writing-1-5" placeholder="I go to work by ... The station is near ..." oninput="saveWriting('writing-1-5')"></textarea>
+        <button class="check-btn" onclick="checkGrammar('writing-1-5')">&#128270; 檢查文法</button>
+        <div class="check-result" id="result-writing-1-5"></div>
       </div>
       <div class="card">
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#10003;</span> 今日任務</div>
@@ -699,6 +759,8 @@
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">W</span> 造句練習</div>
         <p style="font-size:0.85rem; color:#94a3b8;">描述你的興趣（5 句話）</p>
         <textarea class="writing-area" id="writing-1-6" placeholder="I like ... I enjoy ... every day." oninput="saveWriting('writing-1-6')"></textarea>
+        <button class="check-btn" onclick="checkGrammar('writing-1-6')">&#128270; 檢查文法</button>
+        <div class="check-result" id="result-writing-1-6"></div>
       </div>
       <div class="card">
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#10003;</span> 今日任務</div>
@@ -729,6 +791,8 @@
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">W</span> 週末短文練習</div>
         <p style="font-size:0.85rem; color:#94a3b8;">寫一篇自我介紹短文（8-10 句），包含：名字、來自哪裡、家人、日常、食物喜好、興趣</p>
         <textarea class="writing-area" id="writing-1-7" placeholder="Hello! My name is ... I am from ... I have ..." style="min-height:180px;" oninput="saveWriting('writing-1-7')"></textarea>
+        <button class="check-btn" onclick="checkGrammar('writing-1-7')">&#128270; 檢查文法</button>
+        <div class="check-result" id="result-writing-1-7"></div>
       </div>
       <div class="card">
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#128202;</span> 本週學習追蹤</div>
@@ -990,6 +1054,128 @@ function showSaveToast() {
   var toast = document.getElementById('saveToast');
   toast.classList.add('show');
   setTimeout(function() { toast.classList.remove('show'); }, 1500);
+}
+
+// Make example sentences clickable to play
+document.querySelectorAll('.word-ex').forEach(function(el) {
+  el.addEventListener('click', function() {
+    speak(this.textContent.trim());
+  });
+});
+
+// Grammar checker
+function checkGrammar(id) {
+  var text = document.getElementById(id).value.trim();
+  var resultEl = document.getElementById('result-' + id);
+  if (!text) {
+    resultEl.innerHTML = '<span style="color:#f87171;">請先寫一些英文句子再檢查！</span>';
+    resultEl.classList.add('show');
+    return;
+  }
+
+  var issues = [];
+  var sentences = text.split(/(?<=[.!?])\s*/);
+
+  sentences.forEach(function(s) {
+    if (!s.trim()) return;
+    var trimmed = s.trim();
+
+    // Check: first letter should be capitalized
+    if (trimmed[0] && trimmed[0] !== trimmed[0].toUpperCase() && /[a-z]/.test(trimmed[0])) {
+      issues.push({
+        type: '大寫',
+        err: trimmed.substring(0, trimmed.indexOf(' ') > 0 ? trimmed.indexOf(' ') : trimmed.length),
+        fix: trimmed[0].toUpperCase() + trimmed.substring(1, trimmed.indexOf(' ') > 0 ? trimmed.indexOf(' ') : trimmed.length),
+        tip: '句子開頭要大寫'
+      });
+    }
+
+    // Check: sentence should end with punctuation
+    if (trimmed.length > 2 && !/[.!?]$/.test(trimmed)) {
+      issues.push({
+        type: '標點',
+        err: trimmed.slice(-6),
+        fix: trimmed.slice(-6) + '.',
+        tip: '句子結尾要加句號（.）問號（?）或驚嘆號（!）'
+      });
+    }
+
+    // Check: "I" should be capitalized
+    if (/\bi\b/.test(trimmed) && !/\bi[a-z]/.test(trimmed)) {
+      var match = trimmed.match(/\bi\b/);
+      if (match && trimmed[match.index] === 'i') {
+        issues.push({
+          type: '大寫',
+          err: 'i',
+          fix: 'I',
+          tip: '英文的「我」永遠要大寫 I'
+        });
+      }
+    }
+
+    // Check: "a" before vowel should be "an"
+    var anMatch = trimmed.match(/\ba\s+([aeiou]\w*)/i);
+    if (anMatch) {
+      issues.push({
+        type: '冠詞',
+        err: 'a ' + anMatch[1],
+        fix: 'an ' + anMatch[1],
+        tip: '母音（a, e, i, o, u）開頭的字前面要用 "an"'
+      });
+    }
+
+    // Check: double spaces
+    if (/\s{2,}/.test(trimmed)) {
+      issues.push({
+        type: '空格',
+        err: '多餘空格',
+        fix: '單一空格',
+        tip: '字與字之間只需要一個空格'
+      });
+    }
+
+    // Check: common mistakes
+    var commonErrors = [
+      { pattern: /\b(he|she|it)\s+(like|go|eat|drink|have|do|watch|read|play|listen|run|walk|work|study|live|speak)\b/i, tip: '第三人稱單數（he/she/it）動詞要加 s', getSuggestion: function(m) { return m[1] + ' ' + m[2] + 's'; } },
+      { pattern: /\bI\s+is\b/i, tip: 'I 後面要用 am，不是 is', fix: 'I am' },
+      { pattern: /\bI\s+are\b/i, tip: 'I 後面要用 am，不是 are', fix: 'I am' },
+      { pattern: /\b(he|she|it)\s+are\b/i, tip: 'he/she/it 後面要用 is', getSuggestion: function(m) { return m[1] + ' is'; } },
+      { pattern: /\b(they|we)\s+is\b/i, tip: 'they/we 後面要用 are', getSuggestion: function(m) { return m[1] + ' are'; } },
+      { pattern: /\b(do not|don't)\s+(\w+)s\b/i, tip: "don't 後面的動詞不加 s", getSuggestion: function(m) { return m[1] + ' ' + m[2]; } },
+      { pattern: /\bdoes\s+(\w+)\s+(\w+)s\b/i, tip: 'does 問句中動詞不加 s', getSuggestion: function(m) { return 'does ' + m[1] + ' ' + m[2]; } },
+    ];
+
+    commonErrors.forEach(function(rule) {
+      var m = trimmed.match(rule.pattern);
+      if (m) {
+        issues.push({
+          type: '文法',
+          err: m[0],
+          fix: rule.fix || rule.getSuggestion(m),
+          tip: rule.tip
+        });
+      }
+    });
+  });
+
+  // Build result HTML
+  var html = '';
+  if (issues.length === 0) {
+    html = '<span style="color:#34d399;">&#10003; 很好！沒有發現明顯的錯誤，繼續加油！</span>';
+  } else {
+    html = '<div style="color:#f87171;margin-bottom:8px;">發現 ' + issues.length + ' 個可以改進的地方：</div>';
+    issues.forEach(function(issue, i) {
+      html += '<div style="padding:8px 0;border-bottom:1px solid #252f3f;">';
+      html += '<div><span style="background:#7c2d12;padding:2px 6px;border-radius:4px;font-size:0.7rem;color:#fca5a5;">' + issue.type + '</span></div>';
+      html += '<div style="margin-top:4px;"><span class="err">' + issue.err + '</span> → <span class="fix">' + issue.fix + '</span></div>';
+      html += '<div class="check-tip">' + issue.tip + '</div>';
+      html += '</div>';
+    });
+    html += '<div style="margin-top:10px;padding-top:8px;border-top:1px solid #334155;color:#94a3b8;font-size:0.78rem;">&#128161; 修正後可以再按一次「檢查文法」確認</div>';
+  }
+
+  resultEl.innerHTML = html;
+  resultEl.classList.add('show');
 }
 
 loadSaved();

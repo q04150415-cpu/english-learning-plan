@@ -49,7 +49,6 @@
   }
   .progress-text { font-size: 0.8rem; color: #94a3b8; margin-top: 6px; text-align: right; }
 
-  /* Tabs */
   .tabs {
     display: flex;
     gap: 6px;
@@ -74,7 +73,6 @@
     border-color: #6366f1;
   }
 
-  /* Day sections */
   .day-content { display: none; }
   .day-content.active { display: block; }
 
@@ -95,26 +93,55 @@
     margin-bottom: 12px;
   }
 
-  /* Word table */
-  .word-table { width: 100%; border-collapse: collapse; }
-  .word-table th {
-    text-align: left;
-    font-size: 0.75rem;
-    color: #64748b;
-    padding: 6px 8px;
-    border-bottom: 1px solid #334155;
+  /* Word row - new layout */
+  .word-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+    border-bottom: 1px solid #252f3f;
   }
-  .word-table td {
-    padding: 10px 8px;
-    border-bottom: 1px solid #1e293b;
+  .word-row:last-child { border-bottom: none; }
+  .word-row.known { opacity: 0.4; }
+  .word-check {
+    width: 22px;
+    height: 22px;
+    accent-color: #22c55e;
+    flex-shrink: 0;
+  }
+  .word-info { flex: 1; min-width: 0; }
+  .word-main { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .word-en { color: #e2e8f0; font-weight: 600; font-size: 1rem; }
+  .word-zh { color: #94a3b8; font-size: 0.85rem; }
+  .word-ex { color: #64748b; font-size: 0.78rem; font-style: italic; margin-top: 2px; }
+  .play-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: #312e81;
+    color: #a5b4fc;
     font-size: 0.9rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
   }
-  .word-table tr:last-child td { border-bottom: none; }
-  .word-en { color: #e2e8f0; font-weight: 600; }
-  .word-zh { color: #94a3b8; }
-  .word-ex { color: #64748b; font-size: 0.8rem; font-style: italic; }
+  .play-btn:active { background: #4338ca; }
+  .play-btn.playing { background: #4338ca; }
+  .word-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #334155;
+    margin-bottom: 4px;
+  }
+  .word-header-left { font-size: 0.75rem; color: #64748b; }
+  .word-count { font-size: 0.75rem; color: #22c55e; }
 
-  /* Checklist */
   .checklist { list-style: none; }
   .checklist li {
     display: flex;
@@ -132,9 +159,7 @@
     flex-shrink: 0;
   }
   .checklist label { flex: 1; }
-  .checklist .done { text-decoration: line-through; color: #64748b; }
 
-  /* Daily routine */
   .routine-item {
     display: flex;
     justify-content: space-between;
@@ -152,7 +177,6 @@
     border-radius: 99px;
   }
 
-  /* Grammar */
   .grammar-box {
     background: #0f172a;
     border-left: 3px solid #6366f1;
@@ -166,7 +190,6 @@
     font-weight: bold;
   }
 
-  /* Section headers */
   .section-title {
     font-size: 0.95rem;
     color: #e2e8f0;
@@ -185,7 +208,6 @@
     font-size: 0.85rem;
   }
 
-  /* Writing area */
   .writing-area {
     width: 100%;
     min-height: 120px;
@@ -201,7 +223,6 @@
   }
   .writing-area:focus { outline: none; border-color: #6366f1; }
 
-  /* Phase nav */
   .phase-tabs {
     display: flex;
     gap: 4px;
@@ -225,11 +246,9 @@
     color: #fff;
   }
 
-  /* Phase content */
   .phase-content { display: none; }
   .phase-content.active { display: block; }
 
-  /* Week tracker */
   .week-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -261,12 +280,11 @@
     border-color: #6366f1;
   }
   .week-check.checked::after {
-    content: "✓";
+    content: "\2713";
     color: #fff;
     font-size: 0.7rem;
   }
 
-  /* Tips */
   .tip-box {
     background: linear-gradient(135deg, #1e1b4b, #1e293b);
     border: 1px solid #312e81;
@@ -277,7 +295,6 @@
     color: #c7d2fe;
   }
 
-  /* Resources */
   .resource-item {
     display: flex;
     align-items: center;
@@ -301,7 +318,6 @@
   .resource-name { font-size: 0.9rem; font-weight: 600; }
   .resource-desc { font-size: 0.75rem; color: #64748b; }
 
-  /* Bottom nav */
   .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -328,11 +344,9 @@
   .nav-item.active { color: #a5b4fc; }
   .nav-icon { font-size: 1.2rem; }
 
-  /* Pages */
   .page { display: none; }
   .page.active { display: block; }
 
-  /* Milestone */
   .milestone {
     display: flex;
     align-items: flex-start;
@@ -350,7 +364,6 @@
   .milestone-dot.completed { background: #6366f1; }
   .milestone-text { font-size: 0.85rem; }
 
-  /* Save notification */
   .save-toast {
     position: fixed;
     top: 20px;
@@ -365,6 +378,22 @@
     z-index: 200;
   }
   .save-toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Play all button */
+  .play-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 99px;
+    border: 1px solid #4338ca;
+    background: #312e81;
+    color: #c7d2fe;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .play-all-btn:active { background: #4338ca; }
 </style>
 </head>
 <body>
@@ -376,7 +405,6 @@
   <h1>English Learning Plan</h1>
   <p class="subtitle">三個月學習計畫 ｜ 初級 → 中級</p>
 
-  <!-- Progress -->
   <div class="progress-bar-container">
     <h3>總進度</h3>
     <div class="progress-bar">
@@ -385,7 +413,6 @@
     <div class="progress-text" id="progressText">第 1 天 / 84 天</div>
   </div>
 
-  <!-- Phase tabs -->
   <div class="phase-tabs">
     <div class="phase-tab active" onclick="switchPhase(1)">第一階段<br><small>W1-4 基礎</small></div>
     <div class="phase-tab" onclick="switchPhase(2)">第二階段<br><small>W5-8 擴展</small></div>
@@ -394,7 +421,6 @@
 
   <!-- PHASE 1 -->
   <div class="phase-content active" id="phase-1">
-    <!-- Day tabs -->
     <div class="tabs" id="dayTabs1">
       <div class="tab active" onclick="switchDay(1,1)">Day 1</div>
       <div class="tab" onclick="switchDay(1,2)">Day 2</div>
@@ -410,53 +436,47 @@
       <div class="card">
         <h2>Day 1 - 打招呼 & 自我介紹</h2>
         <div class="theme">Greetings & Self Introduction</div>
-
         <div class="section-title">
           <span class="section-icon" style="background:#1e1b4b;">A</span>
           今日單字
+          <button class="play-all-btn" onclick="playAllWords('p1d1')">&#9654; 全部播放</button>
         </div>
-        <table class="word-table">
-          <tr><th>單字</th><th>中文</th><th>例句</th></tr>
-          <tr><td class="word-en">hello</td><td class="word-zh">你好</td><td class="word-ex">Hello, my name is David.</td></tr>
-          <tr><td class="word-en">name</td><td class="word-zh">名字</td><td class="word-ex">What is your name?</td></tr>
-          <tr><td class="word-en">nice</td><td class="word-zh">好的</td><td class="word-ex">Nice to meet you.</td></tr>
-          <tr><td class="word-en">from</td><td class="word-zh">來自</td><td class="word-ex">I am from Taiwan.</td></tr>
-          <tr><td class="word-en">live</td><td class="word-zh">住</td><td class="word-ex">I live in Taipei.</td></tr>
-          <tr><td class="word-en">work</td><td class="word-zh">工作</td><td class="word-ex">I work in a company.</td></tr>
-          <tr><td class="word-en">study</td><td class="word-zh">學習</td><td class="word-ex">I study English every day.</td></tr>
-          <tr><td class="word-en">like</td><td class="word-zh">喜歡</td><td class="word-ex">I like music.</td></tr>
-          <tr><td class="word-en">old</td><td class="word-zh">歲</td><td class="word-ex">I am 25 years old.</td></tr>
-          <tr><td class="word-en">speak</td><td class="word-zh">說</td><td class="word-ex">I speak Chinese.</td></tr>
-        </table>
+        <div class="word-header">
+          <span class="word-header-left">打勾 = 已學會</span>
+          <span class="word-count" id="wc-p1d1">0 / 10 已學會</span>
+        </div>
+        <div id="words-p1d1">
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d1" onchange="saveWordCheck('p1d1')"><div class="word-info"><div class="word-main"><span class="word-en">hello</span><span class="word-zh">你好</span></div><div class="word-ex">Hello, my name is David.</div></div><button class="play-btn" onclick="speak('hello')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d1" onchange="saveWordCheck('p1d1')"><div class="word-info"><div class="word-main"><span class="word-en">name</span><span class="word-zh">名字</span></div><div class="word-ex">What is your name?</div></div><button class="play-btn" onclick="speak('name')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d1" onchange="saveWordCheck('p1d1')"><div class="word-info"><div class="word-main"><span class="word-en">nice</span><span class="word-zh">好的</span></div><div class="word-ex">Nice to meet you.</div></div><button class="play-btn" onclick="speak('nice')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d1" onchange="saveWordCheck('p1d1')"><div class="word-info"><div class="word-main"><span class="word-en">from</span><span class="word-zh">來自</span></div><div class="word-ex">I am from Taiwan.</div></div><button class="play-btn" onclick="speak('from')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d1" onchange="saveWordCheck('p1d1')"><div class="word-info"><div class="word-main"><span class="word-en">live</span><span class="word-zh">住</span></div><div class="word-ex">I live in Taipei.</div></div><button class="play-btn" onclick="speak('live')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d1" onchange="saveWordCheck('p1d1')"><div class="word-info"><div class="word-main"><span class="word-en">work</span><span class="word-zh">工作</span></div><div class="word-ex">I work in a company.</div></div><button class="play-btn" onclick="speak('work')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d1" onchange="saveWordCheck('p1d1')"><div class="word-info"><div class="word-main"><span class="word-en">study</span><span class="word-zh">學習</span></div><div class="word-ex">I study English every day.</div></div><button class="play-btn" onclick="speak('study')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d1" onchange="saveWordCheck('p1d1')"><div class="word-info"><div class="word-main"><span class="word-en">like</span><span class="word-zh">喜歡</span></div><div class="word-ex">I like music.</div></div><button class="play-btn" onclick="speak('like')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d1" onchange="saveWordCheck('p1d1')"><div class="word-info"><div class="word-main"><span class="word-en">old</span><span class="word-zh">歲</span></div><div class="word-ex">I am 25 years old.</div></div><button class="play-btn" onclick="speak('old')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d1" onchange="saveWordCheck('p1d1')"><div class="word-info"><div class="word-main"><span class="word-en">speak</span><span class="word-zh">說</span></div><div class="word-ex">I speak Chinese.</div></div><button class="play-btn" onclick="speak('speak')">&#9654;</button></div>
+        </div>
       </div>
 
       <div class="card">
-        <div class="section-title">
-          <span class="section-icon" style="background:#1e1b4b;">G</span>
-          今日文法
-        </div>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">G</span> 今日文法</div>
         <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:8px;">be 動詞（am / is / are）</p>
         <div class="grammar-box">
-          I <code>am</code> a student.<br>
-          He <code>is</code> tall.<br>
-          They <code>are</code> my friends.
+          I <code>am</code> a student. <button class="play-btn" onclick="speak('I am a student')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button><br>
+          He <code>is</code> tall. <button class="play-btn" onclick="speak('He is tall')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button><br>
+          They <code>are</code> my friends. <button class="play-btn" onclick="speak('They are my friends')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button>
         </div>
       </div>
 
       <div class="card">
-        <div class="section-title">
-          <span class="section-icon" style="background:#1e1b4b;">W</span>
-          造句練習
-        </div>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">W</span> 造句練習</div>
         <p style="font-size:0.85rem; color:#94a3b8;">用今天的單字寫一段自我介紹（5 句）</p>
         <textarea class="writing-area" id="writing-1-1" placeholder="Hello, my name is ... I am from ..." oninput="saveWriting('writing-1-1')"></textarea>
       </div>
 
       <div class="card">
-        <div class="section-title">
-          <span class="section-icon" style="background:#1e1b4b;">✓</span>
-          今日任務
-        </div>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#10003;</span> 今日任務</div>
         <ul class="checklist" id="checklist-1-1">
           <li><input type="checkbox" id="c1-1-1" onchange="saveChecks('checklist-1-1')"><label for="c1-1-1">Duolingo 完成每日任務（15 分鐘）</label></li>
           <li><input type="checkbox" id="c1-1-2" onchange="saveChecks('checklist-1-1')"><label for="c1-1-2">背完 10 個單字並造句（15 分鐘）</label></li>
@@ -471,28 +491,28 @@
       <div class="card">
         <h2>Day 2 - 家庭 & 人物</h2>
         <div class="theme">Family & People</div>
-        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">A</span> 今日單字</div>
-        <table class="word-table">
-          <tr><th>單字</th><th>中文</th><th>例句</th></tr>
-          <tr><td class="word-en">family</td><td class="word-zh">家庭</td><td class="word-ex">I have a big family.</td></tr>
-          <tr><td class="word-en">mother</td><td class="word-zh">媽媽</td><td class="word-ex">My mother is a teacher.</td></tr>
-          <tr><td class="word-en">father</td><td class="word-zh">爸爸</td><td class="word-ex">My father likes cooking.</td></tr>
-          <tr><td class="word-en">brother</td><td class="word-zh">兄弟</td><td class="word-ex">I have one brother.</td></tr>
-          <tr><td class="word-en">sister</td><td class="word-zh">姐妹</td><td class="word-ex">My sister is older than me.</td></tr>
-          <tr><td class="word-en">friend</td><td class="word-zh">朋友</td><td class="word-ex">She is my best friend.</td></tr>
-          <tr><td class="word-en">people</td><td class="word-zh">人們</td><td class="word-ex">There are many people here.</td></tr>
-          <tr><td class="word-en">young</td><td class="word-zh">年輕的</td><td class="word-ex">He is very young.</td></tr>
-          <tr><td class="word-en">together</td><td class="word-zh">一起</td><td class="word-ex">We eat together.</td></tr>
-          <tr><td class="word-en">love</td><td class="word-zh">愛</td><td class="word-ex">I love my family.</td></tr>
-        </table>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">A</span> 今日單字 <button class="play-all-btn" onclick="playAllWords('p1d2')">&#9654; 全部播放</button></div>
+        <div class="word-header"><span class="word-header-left">打勾 = 已學會</span><span class="word-count" id="wc-p1d2">0 / 10 已學會</span></div>
+        <div id="words-p1d2">
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d2" onchange="saveWordCheck('p1d2')"><div class="word-info"><div class="word-main"><span class="word-en">family</span><span class="word-zh">家庭</span></div><div class="word-ex">I have a big family.</div></div><button class="play-btn" onclick="speak('family')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d2" onchange="saveWordCheck('p1d2')"><div class="word-info"><div class="word-main"><span class="word-en">mother</span><span class="word-zh">媽媽</span></div><div class="word-ex">My mother is a teacher.</div></div><button class="play-btn" onclick="speak('mother')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d2" onchange="saveWordCheck('p1d2')"><div class="word-info"><div class="word-main"><span class="word-en">father</span><span class="word-zh">爸爸</span></div><div class="word-ex">My father likes cooking.</div></div><button class="play-btn" onclick="speak('father')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d2" onchange="saveWordCheck('p1d2')"><div class="word-info"><div class="word-main"><span class="word-en">brother</span><span class="word-zh">兄弟</span></div><div class="word-ex">I have one brother.</div></div><button class="play-btn" onclick="speak('brother')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d2" onchange="saveWordCheck('p1d2')"><div class="word-info"><div class="word-main"><span class="word-en">sister</span><span class="word-zh">姐妹</span></div><div class="word-ex">My sister is older than me.</div></div><button class="play-btn" onclick="speak('sister')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d2" onchange="saveWordCheck('p1d2')"><div class="word-info"><div class="word-main"><span class="word-en">friend</span><span class="word-zh">朋友</span></div><div class="word-ex">She is my best friend.</div></div><button class="play-btn" onclick="speak('friend')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d2" onchange="saveWordCheck('p1d2')"><div class="word-info"><div class="word-main"><span class="word-en">people</span><span class="word-zh">人們</span></div><div class="word-ex">There are many people here.</div></div><button class="play-btn" onclick="speak('people')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d2" onchange="saveWordCheck('p1d2')"><div class="word-info"><div class="word-main"><span class="word-en">young</span><span class="word-zh">年輕的</span></div><div class="word-ex">He is very young.</div></div><button class="play-btn" onclick="speak('young')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d2" onchange="saveWordCheck('p1d2')"><div class="word-info"><div class="word-main"><span class="word-en">together</span><span class="word-zh">一起</span></div><div class="word-ex">We eat together.</div></div><button class="play-btn" onclick="speak('together')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d2" onchange="saveWordCheck('p1d2')"><div class="word-info"><div class="word-main"><span class="word-en">love</span><span class="word-zh">愛</span></div><div class="word-ex">I love my family.</div></div><button class="play-btn" onclick="speak('love')">&#9654;</button></div>
+        </div>
       </div>
       <div class="card">
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">G</span> 今日文法</div>
         <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:8px;">have / has 的用法</p>
         <div class="grammar-box">
-          I <code>have</code> a brother.<br>
-          She <code>has</code> two sisters.<br>
-          We <code>have</code> a big family.
+          I <code>have</code> a brother. <button class="play-btn" onclick="speak('I have a brother')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button><br>
+          She <code>has</code> two sisters. <button class="play-btn" onclick="speak('She has two sisters')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button><br>
+          We <code>have</code> a big family. <button class="play-btn" onclick="speak('We have a big family')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button>
         </div>
       </div>
       <div class="card">
@@ -501,7 +521,7 @@
         <textarea class="writing-area" id="writing-1-2" placeholder="I have a ... My mother is ..." oninput="saveWriting('writing-1-2')"></textarea>
       </div>
       <div class="card">
-        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">✓</span> 今日任務</div>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#10003;</span> 今日任務</div>
         <ul class="checklist" id="checklist-1-2">
           <li><input type="checkbox" id="c1-2-1" onchange="saveChecks('checklist-1-2')"><label for="c1-2-1">Duolingo 完成每日任務（15 分鐘）</label></li>
           <li><input type="checkbox" id="c1-2-2" onchange="saveChecks('checklist-1-2')"><label for="c1-2-2">背完 10 個單字並造句（15 分鐘）</label></li>
@@ -516,28 +536,28 @@
       <div class="card">
         <h2>Day 3 - 食物 & 飲料</h2>
         <div class="theme">Food & Drinks</div>
-        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">A</span> 今日單字</div>
-        <table class="word-table">
-          <tr><th>單字</th><th>中文</th><th>例句</th></tr>
-          <tr><td class="word-en">eat</td><td class="word-zh">吃</td><td class="word-ex">I eat breakfast at 8.</td></tr>
-          <tr><td class="word-en">drink</td><td class="word-zh">喝</td><td class="word-ex">I drink water every day.</td></tr>
-          <tr><td class="word-en">food</td><td class="word-zh">食物</td><td class="word-ex">The food is delicious.</td></tr>
-          <tr><td class="word-en">water</td><td class="word-zh">水</td><td class="word-ex">Can I have some water?</td></tr>
-          <tr><td class="word-en">rice</td><td class="word-zh">米飯</td><td class="word-ex">I eat rice for lunch.</td></tr>
-          <tr><td class="word-en">chicken</td><td class="word-zh">雞肉</td><td class="word-ex">I like chicken.</td></tr>
-          <tr><td class="word-en">coffee</td><td class="word-zh">咖啡</td><td class="word-ex">I drink coffee in the morning.</td></tr>
-          <tr><td class="word-en">hungry</td><td class="word-zh">餓</td><td class="word-ex">I am hungry.</td></tr>
-          <tr><td class="word-en">delicious</td><td class="word-zh">好吃的</td><td class="word-ex">This is delicious!</td></tr>
-          <tr><td class="word-en">breakfast</td><td class="word-zh">早餐</td><td class="word-ex">I have breakfast at home.</td></tr>
-        </table>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">A</span> 今日單字 <button class="play-all-btn" onclick="playAllWords('p1d3')">&#9654; 全部播放</button></div>
+        <div class="word-header"><span class="word-header-left">打勾 = 已學會</span><span class="word-count" id="wc-p1d3">0 / 10 已學會</span></div>
+        <div id="words-p1d3">
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d3" onchange="saveWordCheck('p1d3')"><div class="word-info"><div class="word-main"><span class="word-en">eat</span><span class="word-zh">吃</span></div><div class="word-ex">I eat breakfast at 8.</div></div><button class="play-btn" onclick="speak('eat')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d3" onchange="saveWordCheck('p1d3')"><div class="word-info"><div class="word-main"><span class="word-en">drink</span><span class="word-zh">喝</span></div><div class="word-ex">I drink water every day.</div></div><button class="play-btn" onclick="speak('drink')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d3" onchange="saveWordCheck('p1d3')"><div class="word-info"><div class="word-main"><span class="word-en">food</span><span class="word-zh">食物</span></div><div class="word-ex">The food is delicious.</div></div><button class="play-btn" onclick="speak('food')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d3" onchange="saveWordCheck('p1d3')"><div class="word-info"><div class="word-main"><span class="word-en">water</span><span class="word-zh">水</span></div><div class="word-ex">Can I have some water?</div></div><button class="play-btn" onclick="speak('water')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d3" onchange="saveWordCheck('p1d3')"><div class="word-info"><div class="word-main"><span class="word-en">rice</span><span class="word-zh">米飯</span></div><div class="word-ex">I eat rice for lunch.</div></div><button class="play-btn" onclick="speak('rice')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d3" onchange="saveWordCheck('p1d3')"><div class="word-info"><div class="word-main"><span class="word-en">chicken</span><span class="word-zh">雞肉</span></div><div class="word-ex">I like chicken.</div></div><button class="play-btn" onclick="speak('chicken')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d3" onchange="saveWordCheck('p1d3')"><div class="word-info"><div class="word-main"><span class="word-en">coffee</span><span class="word-zh">咖啡</span></div><div class="word-ex">I drink coffee in the morning.</div></div><button class="play-btn" onclick="speak('coffee')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d3" onchange="saveWordCheck('p1d3')"><div class="word-info"><div class="word-main"><span class="word-en">hungry</span><span class="word-zh">餓</span></div><div class="word-ex">I am hungry.</div></div><button class="play-btn" onclick="speak('hungry')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d3" onchange="saveWordCheck('p1d3')"><div class="word-info"><div class="word-main"><span class="word-en">delicious</span><span class="word-zh">好吃的</span></div><div class="word-ex">This is delicious!</div></div><button class="play-btn" onclick="speak('delicious')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d3" onchange="saveWordCheck('p1d3')"><div class="word-info"><div class="word-main"><span class="word-en">breakfast</span><span class="word-zh">早餐</span></div><div class="word-ex">I have breakfast at home.</div></div><button class="play-btn" onclick="speak('breakfast')">&#9654;</button></div>
+        </div>
       </div>
       <div class="card">
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">G</span> 今日文法</div>
         <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:8px;">一般動詞現在式</p>
         <div class="grammar-box">
-          I <code>like</code> coffee.<br>
-          She <code>likes</code> coffee.（第三人稱加 s）<br>
-          We <code>eat</code> lunch at 12.
+          I <code>like</code> coffee. <button class="play-btn" onclick="speak('I like coffee')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button><br>
+          She <code>likes</code> coffee.（第三人稱加 s）<button class="play-btn" onclick="speak('She likes coffee')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button><br>
+          We <code>eat</code> lunch at 12. <button class="play-btn" onclick="speak('We eat lunch at twelve')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button>
         </div>
       </div>
       <div class="card">
@@ -546,7 +566,7 @@
         <textarea class="writing-area" id="writing-1-3" placeholder="I eat ... for breakfast. I like ..." oninput="saveWriting('writing-1-3')"></textarea>
       </div>
       <div class="card">
-        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">✓</span> 今日任務</div>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#10003;</span> 今日任務</div>
         <ul class="checklist" id="checklist-1-3">
           <li><input type="checkbox" id="c1-3-1" onchange="saveChecks('checklist-1-3')"><label for="c1-3-1">Duolingo 完成每日任務（15 分鐘）</label></li>
           <li><input type="checkbox" id="c1-3-2" onchange="saveChecks('checklist-1-3')"><label for="c1-3-2">背完 10 個單字並造句（15 分鐘）</label></li>
@@ -561,28 +581,28 @@
       <div class="card">
         <h2>Day 4 - 時間 & 日常</h2>
         <div class="theme">Time & Daily Life</div>
-        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">A</span> 今日單字</div>
-        <table class="word-table">
-          <tr><th>單字</th><th>中文</th><th>例句</th></tr>
-          <tr><td class="word-en">morning</td><td class="word-zh">早上</td><td class="word-ex">I wake up in the morning.</td></tr>
-          <tr><td class="word-en">night</td><td class="word-zh">晚上</td><td class="word-ex">Good night!</td></tr>
-          <tr><td class="word-en">today</td><td class="word-zh">今天</td><td class="word-ex">Today is Monday.</td></tr>
-          <tr><td class="word-en">tomorrow</td><td class="word-zh">明天</td><td class="word-ex">I will go to work tomorrow.</td></tr>
-          <tr><td class="word-en">early</td><td class="word-zh">早的</td><td class="word-ex">I wake up early.</td></tr>
-          <tr><td class="word-en">late</td><td class="word-zh">晚的</td><td class="word-ex">Sorry, I am late.</td></tr>
-          <tr><td class="word-en">always</td><td class="word-zh">總是</td><td class="word-ex">I always drink coffee.</td></tr>
-          <tr><td class="word-en">sometimes</td><td class="word-zh">有時候</td><td class="word-ex">I sometimes watch movies.</td></tr>
-          <tr><td class="word-en">never</td><td class="word-zh">從不</td><td class="word-ex">I never eat spicy food.</td></tr>
-          <tr><td class="word-en">every</td><td class="word-zh">每一個</td><td class="word-ex">I study every day.</td></tr>
-        </table>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">A</span> 今日單字 <button class="play-all-btn" onclick="playAllWords('p1d4')">&#9654; 全部播放</button></div>
+        <div class="word-header"><span class="word-header-left">打勾 = 已學會</span><span class="word-count" id="wc-p1d4">0 / 10 已學會</span></div>
+        <div id="words-p1d4">
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d4" onchange="saveWordCheck('p1d4')"><div class="word-info"><div class="word-main"><span class="word-en">morning</span><span class="word-zh">早上</span></div><div class="word-ex">I wake up in the morning.</div></div><button class="play-btn" onclick="speak('morning')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d4" onchange="saveWordCheck('p1d4')"><div class="word-info"><div class="word-main"><span class="word-en">night</span><span class="word-zh">晚上</span></div><div class="word-ex">Good night!</div></div><button class="play-btn" onclick="speak('night')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d4" onchange="saveWordCheck('p1d4')"><div class="word-info"><div class="word-main"><span class="word-en">today</span><span class="word-zh">今天</span></div><div class="word-ex">Today is Monday.</div></div><button class="play-btn" onclick="speak('today')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d4" onchange="saveWordCheck('p1d4')"><div class="word-info"><div class="word-main"><span class="word-en">tomorrow</span><span class="word-zh">明天</span></div><div class="word-ex">I will go to work tomorrow.</div></div><button class="play-btn" onclick="speak('tomorrow')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d4" onchange="saveWordCheck('p1d4')"><div class="word-info"><div class="word-main"><span class="word-en">early</span><span class="word-zh">早的</span></div><div class="word-ex">I wake up early.</div></div><button class="play-btn" onclick="speak('early')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d4" onchange="saveWordCheck('p1d4')"><div class="word-info"><div class="word-main"><span class="word-en">late</span><span class="word-zh">晚的</span></div><div class="word-ex">Sorry, I am late.</div></div><button class="play-btn" onclick="speak('late')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d4" onchange="saveWordCheck('p1d4')"><div class="word-info"><div class="word-main"><span class="word-en">always</span><span class="word-zh">總是</span></div><div class="word-ex">I always drink coffee.</div></div><button class="play-btn" onclick="speak('always')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d4" onchange="saveWordCheck('p1d4')"><div class="word-info"><div class="word-main"><span class="word-en">sometimes</span><span class="word-zh">有時候</span></div><div class="word-ex">I sometimes watch movies.</div></div><button class="play-btn" onclick="speak('sometimes')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d4" onchange="saveWordCheck('p1d4')"><div class="word-info"><div class="word-main"><span class="word-en">never</span><span class="word-zh">從不</span></div><div class="word-ex">I never eat spicy food.</div></div><button class="play-btn" onclick="speak('never')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d4" onchange="saveWordCheck('p1d4')"><div class="word-info"><div class="word-main"><span class="word-en">every</span><span class="word-zh">每一個</span></div><div class="word-ex">I study every day.</div></div><button class="play-btn" onclick="speak('every')">&#9654;</button></div>
+        </div>
       </div>
       <div class="card">
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">G</span> 今日文法</div>
         <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:8px;">頻率副詞的位置</p>
         <div class="grammar-box">
-          I <code>always</code> eat breakfast.<br>
-          She <code>sometimes</code> goes to the park.<br>
-          He is <code>never</code> late.（be 動詞後面）
+          I <code>always</code> eat breakfast. <button class="play-btn" onclick="speak('I always eat breakfast')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button><br>
+          She <code>sometimes</code> goes to the park. <button class="play-btn" onclick="speak('She sometimes goes to the park')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button><br>
+          He is <code>never</code> late.（be 動詞後面）<button class="play-btn" onclick="speak('He is never late')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button>
         </div>
       </div>
       <div class="card">
@@ -591,7 +611,7 @@
         <textarea class="writing-area" id="writing-1-4" placeholder="I always wake up at ... In the morning, I ..." oninput="saveWriting('writing-1-4')"></textarea>
       </div>
       <div class="card">
-        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">✓</span> 今日任務</div>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#10003;</span> 今日任務</div>
         <ul class="checklist" id="checklist-1-4">
           <li><input type="checkbox" id="c1-4-1" onchange="saveChecks('checklist-1-4')"><label for="c1-4-1">Duolingo 完成每日任務（15 分鐘）</label></li>
           <li><input type="checkbox" id="c1-4-2" onchange="saveChecks('checklist-1-4')"><label for="c1-4-2">背完 10 個單字並造句（15 分鐘）</label></li>
@@ -606,28 +626,28 @@
       <div class="card">
         <h2>Day 5 - 地點 & 交通</h2>
         <div class="theme">Places & Transportation</div>
-        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">A</span> 今日單字</div>
-        <table class="word-table">
-          <tr><th>單字</th><th>中文</th><th>例句</th></tr>
-          <tr><td class="word-en">home</td><td class="word-zh">家</td><td class="word-ex">I go home at 6.</td></tr>
-          <tr><td class="word-en">school</td><td class="word-zh">學校</td><td class="word-ex">The school is near my home.</td></tr>
-          <tr><td class="word-en">store</td><td class="word-zh">商店</td><td class="word-ex">I go to the store.</td></tr>
-          <tr><td class="word-en">park</td><td class="word-zh">公園</td><td class="word-ex">I walk in the park.</td></tr>
-          <tr><td class="word-en">station</td><td class="word-zh">車站</td><td class="word-ex">The train station is here.</td></tr>
-          <tr><td class="word-en">go</td><td class="word-zh">去</td><td class="word-ex">I go to work by bus.</td></tr>
-          <tr><td class="word-en">walk</td><td class="word-zh">走路</td><td class="word-ex">I walk to school.</td></tr>
-          <tr><td class="word-en">bus</td><td class="word-zh">公車</td><td class="word-ex">I take the bus.</td></tr>
-          <tr><td class="word-en">car</td><td class="word-zh">車</td><td class="word-ex">He drives a car.</td></tr>
-          <tr><td class="word-en">near</td><td class="word-zh">附近</td><td class="word-ex">The store is near.</td></tr>
-        </table>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">A</span> 今日單字 <button class="play-all-btn" onclick="playAllWords('p1d5')">&#9654; 全部播放</button></div>
+        <div class="word-header"><span class="word-header-left">打勾 = 已學會</span><span class="word-count" id="wc-p1d5">0 / 10 已學會</span></div>
+        <div id="words-p1d5">
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d5" onchange="saveWordCheck('p1d5')"><div class="word-info"><div class="word-main"><span class="word-en">home</span><span class="word-zh">家</span></div><div class="word-ex">I go home at 6.</div></div><button class="play-btn" onclick="speak('home')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d5" onchange="saveWordCheck('p1d5')"><div class="word-info"><div class="word-main"><span class="word-en">school</span><span class="word-zh">學校</span></div><div class="word-ex">The school is near my home.</div></div><button class="play-btn" onclick="speak('school')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d5" onchange="saveWordCheck('p1d5')"><div class="word-info"><div class="word-main"><span class="word-en">store</span><span class="word-zh">商店</span></div><div class="word-ex">I go to the store.</div></div><button class="play-btn" onclick="speak('store')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d5" onchange="saveWordCheck('p1d5')"><div class="word-info"><div class="word-main"><span class="word-en">park</span><span class="word-zh">公園</span></div><div class="word-ex">I walk in the park.</div></div><button class="play-btn" onclick="speak('park')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d5" onchange="saveWordCheck('p1d5')"><div class="word-info"><div class="word-main"><span class="word-en">station</span><span class="word-zh">車站</span></div><div class="word-ex">The train station is here.</div></div><button class="play-btn" onclick="speak('station')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d5" onchange="saveWordCheck('p1d5')"><div class="word-info"><div class="word-main"><span class="word-en">go</span><span class="word-zh">去</span></div><div class="word-ex">I go to work by bus.</div></div><button class="play-btn" onclick="speak('go')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d5" onchange="saveWordCheck('p1d5')"><div class="word-info"><div class="word-main"><span class="word-en">walk</span><span class="word-zh">走路</span></div><div class="word-ex">I walk to school.</div></div><button class="play-btn" onclick="speak('walk')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d5" onchange="saveWordCheck('p1d5')"><div class="word-info"><div class="word-main"><span class="word-en">bus</span><span class="word-zh">公車</span></div><div class="word-ex">I take the bus.</div></div><button class="play-btn" onclick="speak('bus')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d5" onchange="saveWordCheck('p1d5')"><div class="word-info"><div class="word-main"><span class="word-en">car</span><span class="word-zh">車</span></div><div class="word-ex">He drives a car.</div></div><button class="play-btn" onclick="speak('car')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d5" onchange="saveWordCheck('p1d5')"><div class="word-info"><div class="word-main"><span class="word-en">near</span><span class="word-zh">附近</span></div><div class="word-ex">The store is near.</div></div><button class="play-btn" onclick="speak('near')">&#9654;</button></div>
+        </div>
       </div>
       <div class="card">
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">G</span> 今日文法</div>
         <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:8px;">介系詞 in / on / at / by</p>
         <div class="grammar-box">
-          I live <code>in</code> Taipei.（城市、國家）<br>
-          I go to work <code>by</code> bus.（交通方式）<br>
-          I arrive <code>at</code> school <code>at</code> 8.（地點、時間）
+          I live <code>in</code> Taipei. <button class="play-btn" onclick="speak('I live in Taipei')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button><br>
+          I go to work <code>by</code> bus. <button class="play-btn" onclick="speak('I go to work by bus')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button><br>
+          I arrive <code>at</code> school <code>at</code> 8. <button class="play-btn" onclick="speak('I arrive at school at eight')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button>
         </div>
       </div>
       <div class="card">
@@ -636,7 +656,7 @@
         <textarea class="writing-area" id="writing-1-5" placeholder="I go to work by ... The station is near ..." oninput="saveWriting('writing-1-5')"></textarea>
       </div>
       <div class="card">
-        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">✓</span> 今日任務</div>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#10003;</span> 今日任務</div>
         <ul class="checklist" id="checklist-1-5">
           <li><input type="checkbox" id="c1-5-1" onchange="saveChecks('checklist-1-5')"><label for="c1-5-1">Duolingo 完成每日任務（15 分鐘）</label></li>
           <li><input type="checkbox" id="c1-5-2" onchange="saveChecks('checklist-1-5')"><label for="c1-5-2">背完 10 個單字並造句（15 分鐘）</label></li>
@@ -651,28 +671,28 @@
       <div class="card">
         <h2>Day 6 - 興趣 & 活動</h2>
         <div class="theme">Hobbies & Activities</div>
-        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">A</span> 今日單字</div>
-        <table class="word-table">
-          <tr><th>單字</th><th>中文</th><th>例句</th></tr>
-          <tr><td class="word-en">watch</td><td class="word-zh">看</td><td class="word-ex">I watch TV at night.</td></tr>
-          <tr><td class="word-en">read</td><td class="word-zh">讀</td><td class="word-ex">I read books.</td></tr>
-          <tr><td class="word-en">play</td><td class="word-zh">玩</td><td class="word-ex">I play games.</td></tr>
-          <tr><td class="word-en">listen</td><td class="word-zh">聽</td><td class="word-ex">I listen to music.</td></tr>
-          <tr><td class="word-en">movie</td><td class="word-zh">電影</td><td class="word-ex">I like this movie.</td></tr>
-          <tr><td class="word-en">music</td><td class="word-zh">音樂</td><td class="word-ex">I listen to music every day.</td></tr>
-          <tr><td class="word-en">game</td><td class="word-zh">遊戲</td><td class="word-ex">This game is fun.</td></tr>
-          <tr><td class="word-en">run</td><td class="word-zh">跑</td><td class="word-ex">I run in the morning.</td></tr>
-          <tr><td class="word-en">fun</td><td class="word-zh">有趣的</td><td class="word-ex">It is very fun.</td></tr>
-          <tr><td class="word-en">enjoy</td><td class="word-zh">享受</td><td class="word-ex">I enjoy reading.</td></tr>
-        </table>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">A</span> 今日單字 <button class="play-all-btn" onclick="playAllWords('p1d6')">&#9654; 全部播放</button></div>
+        <div class="word-header"><span class="word-header-left">打勾 = 已學會</span><span class="word-count" id="wc-p1d6">0 / 10 已學會</span></div>
+        <div id="words-p1d6">
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d6" onchange="saveWordCheck('p1d6')"><div class="word-info"><div class="word-main"><span class="word-en">watch</span><span class="word-zh">看</span></div><div class="word-ex">I watch TV at night.</div></div><button class="play-btn" onclick="speak('watch')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d6" onchange="saveWordCheck('p1d6')"><div class="word-info"><div class="word-main"><span class="word-en">read</span><span class="word-zh">讀</span></div><div class="word-ex">I read books.</div></div><button class="play-btn" onclick="speak('read')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d6" onchange="saveWordCheck('p1d6')"><div class="word-info"><div class="word-main"><span class="word-en">play</span><span class="word-zh">玩</span></div><div class="word-ex">I play games.</div></div><button class="play-btn" onclick="speak('play')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d6" onchange="saveWordCheck('p1d6')"><div class="word-info"><div class="word-main"><span class="word-en">listen</span><span class="word-zh">聽</span></div><div class="word-ex">I listen to music.</div></div><button class="play-btn" onclick="speak('listen')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d6" onchange="saveWordCheck('p1d6')"><div class="word-info"><div class="word-main"><span class="word-en">movie</span><span class="word-zh">電影</span></div><div class="word-ex">I like this movie.</div></div><button class="play-btn" onclick="speak('movie')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d6" onchange="saveWordCheck('p1d6')"><div class="word-info"><div class="word-main"><span class="word-en">music</span><span class="word-zh">音樂</span></div><div class="word-ex">I listen to music every day.</div></div><button class="play-btn" onclick="speak('music')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d6" onchange="saveWordCheck('p1d6')"><div class="word-info"><div class="word-main"><span class="word-en">game</span><span class="word-zh">遊戲</span></div><div class="word-ex">This game is fun.</div></div><button class="play-btn" onclick="speak('game')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d6" onchange="saveWordCheck('p1d6')"><div class="word-info"><div class="word-main"><span class="word-en">run</span><span class="word-zh">跑</span></div><div class="word-ex">I run in the morning.</div></div><button class="play-btn" onclick="speak('run')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d6" onchange="saveWordCheck('p1d6')"><div class="word-info"><div class="word-main"><span class="word-en">fun</span><span class="word-zh">有趣的</span></div><div class="word-ex">It is very fun.</div></div><button class="play-btn" onclick="speak('fun')">&#9654;</button></div>
+          <div class="word-row"><input type="checkbox" class="word-check" data-group="p1d6" onchange="saveWordCheck('p1d6')"><div class="word-info"><div class="word-main"><span class="word-en">enjoy</span><span class="word-zh">享受</span></div><div class="word-ex">I enjoy reading.</div></div><button class="play-btn" onclick="speak('enjoy')">&#9654;</button></div>
+        </div>
       </div>
       <div class="card">
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">G</span> 今日文法</div>
         <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:8px;">簡單問句 Do you...?</p>
         <div class="grammar-box">
-          <code>Do</code> you like music? — Yes, I do.<br>
-          <code>What</code> do you like? — I like movies.<br>
-          <code>Does</code> she play games? — No, she doesn't.
+          <code>Do</code> you like music? — Yes, I do. <button class="play-btn" onclick="speak('Do you like music? Yes, I do.')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button><br>
+          <code>What</code> do you like? — I like movies. <button class="play-btn" onclick="speak('What do you like? I like movies.')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button><br>
+          <code>Does</code> she play games? — No, she doesn't. <button class="play-btn" onclick="speak('Does she play games? No, she doesn\'t.')" style="display:inline-flex;width:24px;height:24px;font-size:0.7rem;vertical-align:middle;">&#9654;</button>
         </div>
       </div>
       <div class="card">
@@ -681,7 +701,7 @@
         <textarea class="writing-area" id="writing-1-6" placeholder="I like ... I enjoy ... every day." oninput="saveWriting('writing-1-6')"></textarea>
       </div>
       <div class="card">
-        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">✓</span> 今日任務</div>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#10003;</span> 今日任務</div>
         <ul class="checklist" id="checklist-1-6">
           <li><input type="checkbox" id="c1-6-1" onchange="saveChecks('checklist-1-6')"><label for="c1-6-1">Duolingo 完成每日任務（15 分鐘）</label></li>
           <li><input type="checkbox" id="c1-6-2" onchange="saveChecks('checklist-1-6')"><label for="c1-6-2">背完 10 個單字並造句（15 分鐘）</label></li>
@@ -696,12 +716,8 @@
       <div class="card">
         <h2>Day 7 - 複習日</h2>
         <div class="theme">Weekly Review</div>
-
-        <div class="tip-box">
-          今天不學新單字，把這週學過的 60 個單字好好複習一遍！
-        </div>
-
-        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">✓</span> 複習任務</div>
+        <div class="tip-box">今天不學新單字，把這週學過的 60 個單字好好複習一遍！</div>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#10003;</span> 複習任務</div>
         <ul class="checklist" id="checklist-1-7">
           <li><input type="checkbox" id="c1-7-1" onchange="saveChecks('checklist-1-7')"><label for="c1-7-1">回顧 60 個單字，標記還不熟的</label></li>
           <li><input type="checkbox" id="c1-7-2" onchange="saveChecks('checklist-1-7')"><label for="c1-7-2">不熟的單字再造一次句子</label></li>
@@ -709,15 +725,13 @@
           <li><input type="checkbox" id="c1-7-4" onchange="saveChecks('checklist-1-7')"><label for="c1-7-4">完成下方週末短文練習</label></li>
         </ul>
       </div>
-
       <div class="card">
         <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">W</span> 週末短文練習</div>
         <p style="font-size:0.85rem; color:#94a3b8;">寫一篇自我介紹短文（8-10 句），包含：名字、來自哪裡、家人、日常、食物喜好、興趣</p>
         <textarea class="writing-area" id="writing-1-7" placeholder="Hello! My name is ... I am from ... I have ..." style="min-height:180px;" oninput="saveWriting('writing-1-7')"></textarea>
       </div>
-
       <div class="card">
-        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">📊</span> 本週學習追蹤</div>
+        <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#128202;</span> 本週學習追蹤</div>
         <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:8px;">點擊圓圈標記已完成的天數</p>
         <div class="week-grid">
           <div class="week-day"><div class="week-day-label">一</div><div class="week-check" onclick="toggleWeekCheck(this)"></div></div>
@@ -732,19 +746,13 @@
     </div>
   </div>
 
-  <!-- PHASE 2 placeholder -->
+  <!-- PHASE 2 -->
   <div class="phase-content" id="phase-2">
     <div class="card">
       <h2>第二階段：擴展能力（第 5-8 週）</h2>
       <div class="theme">完成第一階段後解鎖</div>
-      <div class="tip-box">
-        第二階段重點：<br>
-        - 累計掌握 1200+ 單字<br>
-        - 學習進階文法（完成式、比較級）<br>
-        - 開始寫短文和簡單對話<br>
-        - 主題：旅遊、購物、健康、天氣、情緒、工作
-      </div>
-      <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">🎯</span> 階段目標</div>
+      <div class="tip-box">第二階段重點：<br>- 累計掌握 1200+ 單字<br>- 學習進階文法（完成式、比較級）<br>- 開始寫短文和簡單對話<br>- 主題：旅遊、購物、健康、天氣、情緒、工作</div>
+      <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#127919;</span> 階段目標</div>
       <div class="milestone"><div class="milestone-dot"></div><div class="milestone-text">能進行 3 分鐘的簡單英文對話</div></div>
       <div class="milestone"><div class="milestone-dot"></div><div class="milestone-text">能讀懂 300 字以內的短文</div></div>
       <div class="milestone"><div class="milestone-dot"></div><div class="milestone-text">能寫出 80 字的短文</div></div>
@@ -752,19 +760,13 @@
     </div>
   </div>
 
-  <!-- PHASE 3 placeholder -->
+  <!-- PHASE 3 -->
   <div class="phase-content" id="phase-3">
     <div class="card">
       <h2>第三階段：整合應用（第 9-12 週）</h2>
       <div class="theme">完成第二階段後解鎖</div>
-      <div class="tip-box">
-        第三階段重點：<br>
-        - 累計掌握 2500+ 單字<br>
-        - 學習進階文法（被動語態、條件句）<br>
-        - 流暢對話、閱讀中等難度文章<br>
-        - 寫出結構完整的短文
-      </div>
-      <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">🎯</span> 階段目標</div>
+      <div class="tip-box">第三階段重點：<br>- 累計掌握 2500+ 單字<br>- 學習進階文法（被動語態、條件句）<br>- 流暢對話、閱讀中等難度文章<br>- 寫出結構完整的短文</div>
+      <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">&#127919;</span> 階段目標</div>
       <div class="milestone"><div class="milestone-dot"></div><div class="milestone-text">能進行 5 分鐘以上英文對話</div></div>
       <div class="milestone"><div class="milestone-dot"></div><div class="milestone-text">能讀懂 600 字文章並寫摘要</div></div>
       <div class="milestone"><div class="milestone-dot"></div><div class="milestone-text">能寫出 150 字結構完整的短文</div></div>
@@ -777,101 +779,38 @@
 <div class="page" id="page-routine">
   <h1>每日學習流程</h1>
   <p class="subtitle">每天 60-70 分鐘，養成習慣最重要</p>
-
   <div class="card">
     <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">1</span> Duolingo</div>
-    <div class="routine-item">
-      <div class="routine-name">完成每日任務，每題唸出來</div>
-      <div class="routine-time">15 分鐘</div>
-    </div>
+    <div class="routine-item"><div class="routine-name">完成每日任務，每題唸出來</div><div class="routine-time">15 分鐘</div></div>
   </div>
-
   <div class="card">
     <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">2</span> 背單字</div>
-    <div class="routine-item">
-      <div class="routine-name">背 10 個新單字 + 每個造一句</div>
-      <div class="routine-time">15 分鐘</div>
-    </div>
+    <div class="routine-item"><div class="routine-name">背 10 個新單字 + 每個造一句</div><div class="routine-time">15 分鐘</div></div>
   </div>
-
   <div class="card">
     <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">3</span> VoiceTube</div>
-    <div class="routine-item">
-      <div class="routine-name">
-        看 1 部初級影片<br>
-        <small style="color:#64748b;">第一遍不看字幕 → 開英文字幕 → 跟讀 5 句</small>
-      </div>
-      <div class="routine-time">20 分鐘</div>
-    </div>
+    <div class="routine-item"><div class="routine-name">看 1 部初級影片<br><small style="color:#64748b;">第一遍不看字幕 → 開英文字幕 → 跟讀 5 句</small></div><div class="routine-time">20 分鐘</div></div>
   </div>
-
   <div class="card">
     <div class="section-title"><span class="section-icon" style="background:#1e1b4b;">4</span> 輸出練習</div>
-    <div class="routine-item">
-      <div class="routine-name">
-        寫英文日記 or 跟 Claude 對話<br>
-        <small style="color:#64748b;">用簡單句就好，不怕犯錯</small>
-      </div>
-      <div class="routine-time">15 分鐘</div>
-    </div>
+    <div class="routine-item"><div class="routine-name">寫英文日記 or 跟 Claude 對話<br><small style="color:#64748b;">用簡單句就好，不怕犯錯</small></div><div class="routine-time">15 分鐘</div></div>
   </div>
-
-  <div class="tip-box">
-    小提醒：建議每天固定時間學習，比如晚上 8 點到 9 點。養成習慣比一次學很久更有效！
-  </div>
+  <div class="tip-box">小提醒：建議每天固定時間學習，比如晚上 8 點到 9 點。養成習慣比一次學很久更有效！</div>
 </div>
 
 <!-- PAGE: 資源 -->
 <div class="page" id="page-resources">
   <h1>學習資源</h1>
   <p class="subtitle">善用工具，事半功倍</p>
-
   <div class="card">
     <div class="section-title">免費工具</div>
-    <div class="resource-item">
-      <div class="resource-icon" style="background:#1e3a5f;">D</div>
-      <div class="resource-info">
-        <div class="resource-name">Duolingo</div>
-        <div class="resource-desc">遊戲化學習，適合養成習慣</div>
-      </div>
-    </div>
-    <div class="resource-item">
-      <div class="resource-icon" style="background:#1e3a5f;">V</div>
-      <div class="resource-info">
-        <div class="resource-name">VoiceTube</div>
-        <div class="resource-desc">中英字幕影片，練聽力和跟讀</div>
-      </div>
-    </div>
-    <div class="resource-item">
-      <div class="resource-icon" style="background:#1e3a5f;">C</div>
-      <div class="resource-info">
-        <div class="resource-name">Claude</div>
-        <div class="resource-desc">AI 對話練習、批改作文、解答文法</div>
-      </div>
-    </div>
-    <div class="resource-item">
-      <div class="resource-icon" style="background:#1e3a5f;">A</div>
-      <div class="resource-info">
-        <div class="resource-name">Anki</div>
-        <div class="resource-desc">間隔複習背單字，記憶效果最好</div>
-      </div>
-    </div>
-    <div class="resource-item">
-      <div class="resource-icon" style="background:#1e3a5f;">B</div>
-      <div class="resource-info">
-        <div class="resource-name">BBC Learning English</div>
-        <div class="resource-desc">分級聽力素材，英式英文</div>
-      </div>
-    </div>
-    <div class="resource-item">
-      <div class="resource-icon" style="background:#1e3a5f;">N</div>
-      <div class="resource-info">
-        <div class="resource-name">News in Levels</div>
-        <div class="resource-desc">分級新聞，練閱讀理解</div>
-      </div>
-    </div>
+    <div class="resource-item"><div class="resource-icon" style="background:#1e3a5f;">D</div><div class="resource-info"><div class="resource-name">Duolingo</div><div class="resource-desc">遊戲化學習，適合養成習慣</div></div></div>
+    <div class="resource-item"><div class="resource-icon" style="background:#1e3a5f;">V</div><div class="resource-info"><div class="resource-name">VoiceTube</div><div class="resource-desc">中英字幕影片，練聽力和跟讀</div></div></div>
+    <div class="resource-item"><div class="resource-icon" style="background:#1e3a5f;">C</div><div class="resource-info"><div class="resource-name">Claude</div><div class="resource-desc">AI 對話練習、批改作文、解答文法</div></div></div>
+    <div class="resource-item"><div class="resource-icon" style="background:#1e3a5f;">A</div><div class="resource-info"><div class="resource-name">Anki</div><div class="resource-desc">間隔複習背單字，記憶效果最好</div></div></div>
+    <div class="resource-item"><div class="resource-icon" style="background:#1e3a5f;">B</div><div class="resource-info"><div class="resource-name">BBC Learning English</div><div class="resource-desc">分級聽力素材，英式英文</div></div></div>
+    <div class="resource-item"><div class="resource-icon" style="background:#1e3a5f;">N</div><div class="resource-info"><div class="resource-name">News in Levels</div><div class="resource-desc">分級新聞，練閱讀理解</div></div></div>
   </div>
-
   <div class="card">
     <div class="section-title">學習小技巧</div>
     <ul style="list-style:none; font-size:0.85rem;">
@@ -887,124 +826,157 @@
 
 <!-- Bottom Navigation -->
 <div class="bottom-nav">
-  <div class="nav-item active" onclick="switchPage('daily')">
-    <div class="nav-icon">📖</div>
-    <div>每日學習</div>
-  </div>
-  <div class="nav-item" onclick="switchPage('routine')">
-    <div class="nav-icon">⏰</div>
-    <div>每日流程</div>
-  </div>
-  <div class="nav-item" onclick="switchPage('resources')">
-    <div class="nav-icon">🔗</div>
-    <div>學習資源</div>
-  </div>
+  <div class="nav-item active" onclick="switchPage('daily')"><div class="nav-icon">&#128214;</div><div>每日學習</div></div>
+  <div class="nav-item" onclick="switchPage('routine')"><div class="nav-icon">&#9200;</div><div>每日流程</div></div>
+  <div class="nav-item" onclick="switchPage('resources')"><div class="nav-icon">&#128279;</div><div>學習資源</div></div>
 </div>
 
 <script>
+// Text-to-Speech
+function speak(text) {
+  window.speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  u.rate = 0.85;
+  window.speechSynthesis.speak(u);
+}
+
+// Play all words in a group
+function playAllWords(group) {
+  var words = document.querySelectorAll('#words-' + group + ' .word-en');
+  var i = 0;
+  function next() {
+    if (i >= words.length) return;
+    var word = words[i].textContent;
+    var u = new SpeechSynthesisUtterance(word);
+    u.lang = 'en-US';
+    u.rate = 0.8;
+    u.onend = function() { i++; setTimeout(next, 400); };
+    window.speechSynthesis.speak(u);
+  }
+  window.speechSynthesis.cancel();
+  next();
+}
+
+// Word check - save and update count
+function saveWordCheck(group) {
+  var checks = document.querySelectorAll('[data-group="' + group + '"]');
+  var states = [];
+  var count = 0;
+  checks.forEach(function(c) {
+    states.push(c.checked);
+    if (c.checked) count++;
+    c.closest('.word-row').classList.toggle('known', c.checked);
+  });
+  localStorage.setItem('eng_wc_' + group, JSON.stringify(states));
+  var el = document.getElementById('wc-' + group);
+  if (el) el.textContent = count + ' / ' + checks.length + ' 已學會';
+  showSaveToast();
+}
+
 // Page switching
 function switchPage(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
   document.getElementById('page-' + page).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
   event.currentTarget.classList.add('active');
   window.scrollTo(0, 0);
 }
 
-// Phase switching
 function switchPhase(phase) {
-  document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.phase-content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.phase-tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.phase-content').forEach(function(c) { c.classList.remove('active'); });
   document.querySelectorAll('.phase-tab')[phase - 1].classList.add('active');
   document.getElementById('phase-' + phase).classList.add('active');
 }
 
-// Day switching
 function switchDay(phase, day) {
-  const parent = document.getElementById('phase-' + phase);
-  parent.querySelectorAll('.day-content').forEach(d => d.classList.remove('active'));
-  parent.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  var parent = document.getElementById('phase-' + phase);
+  parent.querySelectorAll('.day-content').forEach(function(d) { d.classList.remove('active'); });
+  parent.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
   document.getElementById('p' + phase + '-day' + day).classList.add('active');
   parent.querySelectorAll('.tab')[day - 1].classList.add('active');
 }
 
-// Week check toggle
 function toggleWeekCheck(el) {
   el.classList.toggle('checked');
-  saveToLocal();
+  var weekChecks = document.querySelectorAll('.week-check');
+  var states = Array.from(weekChecks).map(function(c) { return c.classList.contains('checked'); });
+  localStorage.setItem('eng_weekChecks', JSON.stringify(states));
 }
 
-// Save writing to localStorage
 function saveWriting(id) {
-  const text = document.getElementById(id).value;
-  localStorage.setItem('eng_' + id, text);
+  localStorage.setItem('eng_' + id, document.getElementById(id).value);
   showSaveToast();
 }
 
-// Save checklists
 function saveChecks(listId) {
-  const list = document.getElementById(listId);
-  const checks = list.querySelectorAll('input[type="checkbox"]');
-  const states = Array.from(checks).map(c => c.checked);
+  var list = document.getElementById(listId);
+  var checks = list.querySelectorAll('input[type="checkbox"]');
+  var states = Array.from(checks).map(function(c) { return c.checked; });
   localStorage.setItem('eng_' + listId, JSON.stringify(states));
   updateProgress();
   showSaveToast();
 }
 
-// Save all state
-function saveToLocal() {
-  const weekChecks = document.querySelectorAll('.week-check');
-  const states = Array.from(weekChecks).map(c => c.classList.contains('checked'));
-  localStorage.setItem('eng_weekChecks', JSON.stringify(states));
-}
-
-// Load saved data
 function loadSaved() {
   // Load writings
-  document.querySelectorAll('.writing-area').forEach(el => {
-    const saved = localStorage.getItem('eng_' + el.id);
+  document.querySelectorAll('.writing-area').forEach(function(el) {
+    var saved = localStorage.getItem('eng_' + el.id);
     if (saved) el.value = saved;
   });
-
-  // Load checklists
-  document.querySelectorAll('.checklist').forEach(list => {
-    const saved = localStorage.getItem('eng_' + list.id);
+  // Load task checklists
+  document.querySelectorAll('.checklist').forEach(function(list) {
+    var saved = localStorage.getItem('eng_' + list.id);
     if (saved) {
-      const states = JSON.parse(saved);
-      const checks = list.querySelectorAll('input[type="checkbox"]');
-      states.forEach((s, i) => { if (checks[i]) checks[i].checked = s; });
+      var states = JSON.parse(saved);
+      var checks = list.querySelectorAll('input[type="checkbox"]');
+      states.forEach(function(s, i) { if (checks[i]) checks[i].checked = s; });
     }
   });
-
+  // Load word checks
+  var groups = ['p1d1','p1d2','p1d3','p1d4','p1d5','p1d6'];
+  groups.forEach(function(g) {
+    var saved = localStorage.getItem('eng_wc_' + g);
+    if (saved) {
+      var states = JSON.parse(saved);
+      var checks = document.querySelectorAll('[data-group="' + g + '"]');
+      var count = 0;
+      states.forEach(function(s, i) {
+        if (checks[i]) {
+          checks[i].checked = s;
+          if (s) { checks[i].closest('.word-row').classList.add('known'); count++; }
+        }
+      });
+      var el = document.getElementById('wc-' + g);
+      if (el) el.textContent = count + ' / ' + checks.length + ' 已學會';
+    }
+  });
   // Load week checks
-  const weekSaved = localStorage.getItem('eng_weekChecks');
+  var weekSaved = localStorage.getItem('eng_weekChecks');
   if (weekSaved) {
-    const states = JSON.parse(weekSaved);
-    const weekChecks = document.querySelectorAll('.week-check');
-    states.forEach((s, i) => { if (s && weekChecks[i]) weekChecks[i].classList.add('checked'); });
+    var states = JSON.parse(weekSaved);
+    var weekChecks = document.querySelectorAll('.week-check');
+    states.forEach(function(s, i) { if (s && weekChecks[i]) weekChecks[i].classList.add('checked'); });
   }
-
   updateProgress();
 }
 
-// Update progress bar
 function updateProgress() {
-  const allChecks = document.querySelectorAll('.checklist input[type="checkbox"]');
-  const checked = Array.from(allChecks).filter(c => c.checked).length;
-  const total = allChecks.length;
-  const pct = total > 0 ? Math.round((checked / total) * 100) : 0;
+  var allChecks = document.querySelectorAll('.checklist input[type="checkbox"]');
+  var checked = Array.from(allChecks).filter(function(c) { return c.checked; }).length;
+  var total = allChecks.length;
+  var pct = total > 0 ? Math.round((checked / total) * 100) : 0;
   document.getElementById('totalProgress').style.width = pct + '%';
   document.getElementById('progressText').textContent = '已完成 ' + checked + ' / ' + total + ' 項任務（' + pct + '%）';
 }
 
-// Toast
 function showSaveToast() {
-  const toast = document.getElementById('saveToast');
+  var toast = document.getElementById('saveToast');
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 1500);
+  setTimeout(function() { toast.classList.remove('show'); }, 1500);
 }
 
-// Init
 loadSaved();
 </script>
 </body>

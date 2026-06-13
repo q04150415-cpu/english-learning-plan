@@ -832,11 +832,25 @@
 </div>
 
 <script>
-// Text-to-Speech
+// Text-to-Speech (American English)
+var usVoice = null;
+function loadVoice() {
+  var voices = window.speechSynthesis.getVoices();
+  // Prefer American English voices
+  usVoice = voices.find(function(v) { return v.lang === 'en-US' && v.name.indexOf('Google') !== -1; })
+    || voices.find(function(v) { return v.lang === 'en-US' && v.name.indexOf('Samantha') !== -1; })
+    || voices.find(function(v) { return v.lang === 'en-US'; })
+    || voices.find(function(v) { return v.lang.indexOf('en') === 0; })
+    || null;
+}
+window.speechSynthesis.onvoiceschanged = loadVoice;
+loadVoice();
+
 function speak(text) {
   window.speechSynthesis.cancel();
   var u = new SpeechSynthesisUtterance(text);
   u.lang = 'en-US';
+  if (usVoice) u.voice = usVoice;
   u.rate = 0.85;
   window.speechSynthesis.speak(u);
 }
@@ -850,6 +864,7 @@ function playAllWords(group) {
     var word = words[i].textContent;
     var u = new SpeechSynthesisUtterance(word);
     u.lang = 'en-US';
+    if (usVoice) u.voice = usVoice;
     u.rate = 0.8;
     u.onend = function() { i++; setTimeout(next, 400); };
     window.speechSynthesis.speak(u);
